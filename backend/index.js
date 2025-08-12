@@ -4,7 +4,7 @@ require('dotenv').config();
 require('./Models/db');
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
@@ -17,6 +17,10 @@ app.use('/products', productRouter);                      // Mount TestRouter on
 
 app.get('/ping', (req, res) => {
   res.send('PONG');
+});
+
+app.get('/', (req, res) => {
+  res.send('Backend is running 🚀');
 });
 
 app.listen(PORT, () => {
